@@ -6,8 +6,8 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app, origins=["http://localhost:5173"])
 # Replace with your API keys
-YOUTUBE_API_KEY = "AIzaSyCoPHVrt3lWUR_cbbRINh91GHzBFgcKl78"
-GEMINI_API_KEY = "AIzaSyAFXOKE8qMD6tECr9A9JT9OMPKFcrQIvp4"
+YOUTUBE_API_KEY = ""
+GEMINI_API_KEY = ""
 
 # YouTube Data API endpoint
 YOUTUBE_COMMENTS_API = "https://www.googleapis.com/youtube/v3/commentThreads"
