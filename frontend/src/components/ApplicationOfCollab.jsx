@@ -5,6 +5,7 @@ const ApplcationOfCollab = () => {
   const [selectedCollaboration, setSelectedCollaboration] = useState(null);
   const [collabRequests, setCollabRequests] = useState([]);
   const [error, setError] = useState(null);
+  
 
   const userId = localStorage.getItem("id");
   const token = localStorage.getItem("token");
