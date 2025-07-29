@@ -1,4 +1,4 @@
-#🎥 WContent - The Ultimate Platform for Creators!
+#🎥 WContent - The Ultimate Platform for Creators
 live demo : https://wcontent-app-in.vercel.app
 ## 🌟 Description
 WContent is a platform designed for content creators worldwide, helping them **predict their future reach** based on YouTube statistics such as recent comments, likes, subscribers, and more! 🚀
