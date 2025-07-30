@@ -44,6 +44,7 @@ public class ApplicantsController {
                 optionalOpportunity.get().getTitle(), optionalOpportunity.get().getRequirements(),
                 optionalOpportunity.get().getLocation(), optionalOpportunity.get().getType(),
                 optionalOpportunity.get().getSalaryRange());
+
         emailService.sendAppliactionEmailtoApplicant(email, applicant, optionalOpportunity.get().getDescription(),
                 optionalOpportunity.get().getTitle(), optionalOpportunity.get().getRequirements(),
                 optionalOpportunity.get().getLocation(), optionalOpportunity.get().getType(),
@@ -59,6 +60,15 @@ public class ApplicantsController {
         }
         PostOpportunity opportunity = optionalOpportunity.get();
         return new ResponseEntity<>(opportunity.getApplicants(), HttpStatus.OK);
+    }
+
+    public ResponseEntity<?> getOpportunity(@PathVariable("id") String opportunityId) {
+        Optional<PostOpportunity> optionalOpportunity = postOpportunityRepository.findById(opportunityId);
+        if (!optionalOpportunity.isPresent()) {
+            return new ResponseEntity<>("Opportunity not found", HttpStatus.NOT_FOUND);
+        }
+        PostOpportunity opportunity = optionalOpportunity.get();
+        return new ResponseEntity<>(opportunity, HttpStatus.OK);
     }
 
 }

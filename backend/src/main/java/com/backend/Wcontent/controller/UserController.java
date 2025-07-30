@@ -28,6 +28,11 @@ public class UserController {
         return userRepository.findAll();
     }
 
+    @GetMapping("/getAlll")
+    public Iterable<User> getAllUserss() {
+        return userRepository.findAll();
+    }
+
     @PostMapping("/request-otp")
     public ResponseEntity<?> requestOTP(@RequestParam String email) {
         if (userRepository.existsByEmail(email)) {
@@ -87,17 +92,23 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody User user) {
         User existingUser = userRepository.findByEmail(user.getEmail()).orElse(null);
+
         if (existingUser == null) {
             return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
         }
-        if (!existingUser.getPassword().equals(user.getPassword())) {
+
+        String storedPassword = existingUser.getPassword();
+        String inputPassword = user.getPassword();
+
+        if (storedPassword == null || inputPassword == null || !storedPassword.equals(inputPassword)) {
             return new ResponseEntity<>("Invalid password", HttpStatus.UNAUTHORIZED);
         }
+
         String token = JwtUtil.generateToken(existingUser.getEmail());
         TokenResponse tokenResponse = new TokenResponse(existingUser, token);
+
         emailService.sendLoginEmail(user.getEmail());
         return new ResponseEntity<>(tokenResponse, HttpStatus.OK);
-
     }
 
     @PutMapping("/update/{id}")
